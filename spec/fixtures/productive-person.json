@@ -1,0 +1,7 @@
+{
+    "id": "1234",
+    "type": "people",
+    "attributes": {
+        "email": "hello@example.com"
+    }
+}

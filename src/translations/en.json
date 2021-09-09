@@ -1,0 +1,7 @@
+{
+    "app": {
+      "name": "Productive Time Logger",
+      "short_description": "A Zendesk app for logging time spent on a ticket to Productive.",
+      "installation_instructions": "Configure the following app settings, then click Install:..."
+    }
+  }

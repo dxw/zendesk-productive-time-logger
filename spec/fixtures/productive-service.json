@@ -1,0 +1,21 @@
+{
+    "id": "1234",
+    "type": "services",
+    "attributes": {
+        "name": "Support"
+    },
+    "relationships": {
+        "service_type": {
+            "data": {
+                "type": "service_types",
+                "id": "93265"
+            }
+        },
+        "deal": {
+            "data": {
+                "type": "deals",
+                "id": "1234"
+            }
+        }
+    }
+}

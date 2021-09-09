@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+echo "==> Installing gem dependencies…"
+bundle check >/dev/null 2>&1  || {
+  bundle install
+}
+
+echo "==> Installing npm dependencies…"
+npm install

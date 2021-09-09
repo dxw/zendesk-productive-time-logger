@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+while [ "$1" ]; do
+  case $1 in
+    "--push")
+      PUSH_TO_ZENDESK=1
+    ;;
+  esac
+  shift
+done
+
+echo "==> Building package…"
+
+npm run build
+
+if [ "$PUSH_TO_ZENDESK" ]; then
+  echo "==> Packaging and pushing to Zendesk…"
+  bundle exec zat update -p dist
+else
+  echo "==> Packaging for local ZAT…"
+  bundle exec zat package -p dist
+fi

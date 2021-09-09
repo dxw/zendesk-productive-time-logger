@@ -1,0 +1,16 @@
+[
+    {
+        "id": "1234",
+        "type": "time_entries",
+        "attributes": {
+            "time": 60
+        }
+    },
+    {
+        "id": "12345",
+        "type": "time_entries",
+        "attributes": {
+            "time": 90
+        }
+    }
+]

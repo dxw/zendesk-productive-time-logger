@@ -1,0 +1,41 @@
+html {
+  overflow: hidden;
+}
+
+.loader {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+}
+
+#message.error {
+  color: red;
+}
+#message.success {
+  color: green;
+}
+
+form * {
+  display: block;
+}
+
+form label{
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+form button{
+  margin-top: 20px;
+  padding: 5px
+}
+
+hr{
+  margin: 10px 0;
+}
+
+input, textarea{
+  width: 90%;
+  padding: 5px;
+}

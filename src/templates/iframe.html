@@ -1,0 +1,19 @@
+<!-- <%= htmlWebpackPlugin.options.warning %> -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <% _.forEach(htmlWebpackPlugin.options.vendorCss, function(css) { %><link href="<%= css %>" rel="stylesheet"><% }); %>
+  </head>
+
+  <body>
+    <section data-main id="main">
+       <svg class="loader" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin:auto;background:#fff;display:block;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+        <circle cx="50" cy="50" fill="none" stroke="#1ba4de" stroke-width="4" r="15" stroke-dasharray="70.68583470577033 25.561944901923447">
+          <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="0.9803921568627451s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
+        </circle>
+      </svg>
+    </section>
+    <% _.forEach(htmlWebpackPlugin.options.vendorJs, function(js) { %><script type="text/javascript" src="<%= js %>"></script><% }); %>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+settings.yml
+/tmp
+/node_modules
+/dist
+.DS_Store
+/coverage
+/.zat
+.zat
+.env

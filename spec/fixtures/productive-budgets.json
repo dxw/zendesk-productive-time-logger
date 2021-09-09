@@ -1,0 +1,9 @@
+[{
+    "id": "1234",
+    "type": "deals",
+    "attributes": {
+        "name": "Support",
+        "date": "2020-12-01",
+        "end_date": "3022-05-31"
+    }
+}]

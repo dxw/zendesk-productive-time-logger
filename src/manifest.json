@@ -1,0 +1,43 @@
+{
+    "name": "Productive Time Logger",
+    "author": {
+      "name": "Joseph Dudley",
+      "email": "joseph@dxw.com",
+      "url": "https://dxw.com"
+    },
+    "parameters": [
+      {
+        "name": "airtable_api_key",
+        "type": "text",
+        "required": true,
+        "secure": true
+      },
+      {
+        "name": "airtable_base_id",
+        "type": "text",
+        "required": true,
+        "secure": true
+      },
+      {
+        "name": "productive_api_key",
+        "type": "text",
+        "required": true,
+        "secure": true
+      },
+      {
+        "name": "productive_org_id",
+        "type": "text",
+        "required": true,
+        "secure": true
+      }
+    ],
+    "defaultLocale": "en",
+    "private": true,
+    "location": {
+      "support": {
+        "ticket_sidebar": "assets/iframe.html"
+      }
+    },
+    "version": "1.0",
+    "frameworkVersion": "2.0"
+  }

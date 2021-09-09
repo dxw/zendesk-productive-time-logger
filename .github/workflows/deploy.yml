@@ -1,0 +1,30 @@
+name: Deploy
+env:
+  ZENDESK_USERNAME: ${{ secrets.ZENDESK_USERNAME }}
+  ZENDESK_PASSWORD: ${{ secrets.ZENDESK_PASSWORD }}
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+    - name: Install dependencies
+      run: script/bootstrap
+    - name: Create zatfile
+      run: |
+        cp .zat.example .zat
+        sed -i -e "s|USERNAME_GOES_HERE|$ZENDESK_USERNAME|g" .zat
+        sed -i -e "s|PASSWORD_GOES_HERE|$ZENDESK_PASSWORD|g" .zat
+    - name: Build and push to Zendesk
+      run: script/build --push
