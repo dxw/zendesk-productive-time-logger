@@ -1,4 +1,4 @@
-const Handlebars = require('handlebars')
+import Handlebars from 'handlebars/dist/handlebars.min.js'
 
 Handlebars.registerHelper('link', function (text, url) {
   return new Handlebars.SafeString('<a href="' + Handlebars.escapeExpression(url) + '" target="_blank">' + Handlebars.escapeExpression(text) + '</a>')
