@@ -1,4 +1,6 @@
-/* eslint-env jest, browser */
+/**
+ * @jest-environment jsdom
+ */
 import App from '../src/javascripts/modules/app'
 
 import { CLIENT, productiveClient, airtableBase } from './mocks/mock'
@@ -39,7 +41,7 @@ describe('Example App', () => {
   })
 
   describe('Initialization Success', () => {
-    beforeEach(async (done) => {
+    beforeEach(done => {
       initializeApp(airtableBase(), productiveClient()).then(_ => done())
     })
 
@@ -54,7 +56,7 @@ describe('Example App', () => {
   })
 
   describe('when Airtable API doesnt work', () => {
-    beforeEach(async (done) => {
+    beforeEach(done => {
       initializeApp(null, productiveClient()).then(_ => done())
     })
 
@@ -64,7 +66,7 @@ describe('Example App', () => {
   })
 
   describe('when project is not present in airtable', () => {
-    beforeEach(async (done) => {
+    beforeEach(done => {
       initializeApp(airtableBase('no project'), productiveClient()).then(_ => done())
     })
 
@@ -74,7 +76,7 @@ describe('Example App', () => {
   })
 
   describe('when link is not present in Airtable', () => {
-    beforeEach(async (done) => {
+    beforeEach(done => {
       initializeApp(airtableBase('no link'), productiveClient()).then(_ => done())
     })
 
@@ -84,7 +86,7 @@ describe('Example App', () => {
   })
 
   describe('when productive API doesnt work', () => {
-    beforeEach(async (done) => {
+    beforeEach(done => {
       initializeApp(airtableBase(), null).then(_ => done())
     })
 
@@ -94,7 +96,7 @@ describe('Example App', () => {
   })
 
   describe('when person is not present in productive', () => {
-    beforeEach(async (done) => {
+    beforeEach(done => {
       initializeApp(airtableBase(), productiveClient('no person')).then(_ => done())
     })
 
@@ -104,7 +106,7 @@ describe('Example App', () => {
   })
 
   describe('when project is not present in productive', () => {
-    beforeEach(async (done) => {
+    beforeEach(done => {
       initializeApp(airtableBase(), productiveClient('no project')).then(_ => done())
     })
 
@@ -114,7 +116,7 @@ describe('Example App', () => {
   })
 
   describe('when project has no support service in productive', () => {
-    beforeEach(async (done) => {
+    beforeEach(done => {
       initializeApp(airtableBase(), productiveClient('no support service')).then(_ => done())
     })
 
@@ -124,11 +126,11 @@ describe('Example App', () => {
   })
 
   describe('when time logging to productive fails', () => {
-    beforeEach(async (done) => {
+    beforeEach(done => {
       initializeApp(airtableBase(), productiveClient('time logging fails')).then(_ => done())
     })
 
-    it('should show an error message on the page', async () => {
+    it('should show an error message on the page', () => {
       document.querySelector('#duration').value = 10
       document.querySelector('#submit').click()
       setTimeout(() => {
@@ -138,11 +140,11 @@ describe('Example App', () => {
   })
 
   describe('when time logging to productive succeeds', () => {
-    beforeEach(async (done) => {
+    beforeEach(done => {
       initializeApp(airtableBase(), productiveClient()).then(_ => done())
     })
 
-    it('should show a success message on the page', async () => {
+    it('should show a success message on the page', () => {
       document.querySelector('#duration').value = 10
       document.querySelector('#submit').click()
       setTimeout(() => {

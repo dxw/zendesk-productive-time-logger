@@ -1,4 +1,6 @@
-/* eslint-env jest */
+/**
+ * @jest-environment jsdom
+ */
 import { resizeContainer, render } from '../src/javascripts/lib/helpers'
 import createRangePolyfill from './polyfills/createRange'
 

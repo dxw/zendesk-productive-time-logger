@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { devDependencies } = require('./package.json')
+const webpack = require('webpack')
 
 // this function reads Zendesk Garden npm dependencies from package.json and
 // creates a jsDelivr url
@@ -35,7 +36,7 @@ const externalAssets = {
 module.exports = {
   entry: {
     app: [
-      'babel-polyfill',
+      'whatwg-fetch',
       './src/javascripts/locations/ticket_sidebar.js',
       './src/index.css'
     ]
@@ -79,10 +80,10 @@ module.exports = {
     // Copy over static assets
     new CopyWebpackPlugin({
       patterns: [
-        { from: 'src/translations/*', to: '../translations', flatten: true },
-        { from: 'src/manifest.json', to: '../', flatten: true },
-        { from: 'src/images/*', to: '.', flatten: true },
-        { from: '.zat', to: '../', flatten: true }
+        { from: 'src/translations/*', to: '../translations/[name][ext]' },
+        { from: 'src/manifest.json', to: '../[name][ext]' },
+        { from: 'src/images/*', to: '[name][ext]' },
+        { from: '.zat', to: '../[name][ext]' }
       ]
     }),
 
@@ -97,6 +98,10 @@ module.exports = {
       vendorJs: externalAssets.js,
       template: './src/templates/iframe.html',
       filename: 'iframe.html'
+    }),
+
+    new webpack.ProvidePlugin({
+      process: 'process/browser'
     })
   ]
 }

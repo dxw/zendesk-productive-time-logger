@@ -1,7 +1,7 @@
 import AirtableProject from '../src/javascripts/lib/airtable_project.js'
 import { airtableBase } from './mocks/mock'
 
-describe('project.js', async () => {
+describe('project.js', () => {
   let project
 
   beforeEach(async () => {

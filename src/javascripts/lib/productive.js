@@ -1,5 +1,3 @@
-const fetch = require('node-fetch')
-
 class Productive {
   constructor (apiKey, orgId) {
     this._apiKey = apiKey

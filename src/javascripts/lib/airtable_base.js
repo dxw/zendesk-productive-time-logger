@@ -1,4 +1,4 @@
-const Airtable = require('airtable')
+import Airtable from 'airtable'
 
 class AirtableBase {
   constructor (apiKey, baseID) {
