@@ -2,4 +2,5 @@
 
 source 'https://rubygems.org/'
 
-gem 'zendesk_apps_tools'
+# Forked from "zendesk/zendesk_apps_tools" to fix security alerts
+gem 'zendesk_apps_tools', github: 'dxw/zendesk_apps_tools', tag: 'v3.8.1-dxw3'
