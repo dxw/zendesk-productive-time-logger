@@ -9,26 +9,22 @@
       {
         "name": "airtable_api_key",
         "type": "text",
-        "required": true,
-        "secure": true
+        "required": true
       },
       {
         "name": "airtable_base_id",
         "type": "text",
-        "required": true,
-        "secure": true
+        "required": true
       },
       {
         "name": "productive_api_key",
         "type": "text",
-        "required": true,
-        "secure": true
+        "required": true
       },
       {
         "name": "productive_org_id",
         "type": "text",
-        "required": true,
-        "secure": true
+        "required": true
       }
     ],
     "defaultLocale": "en",
