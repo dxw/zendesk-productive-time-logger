@@ -1,4 +1,4 @@
-const fetch = require('whatwg-fetch')
+import { fetch } from 'whatwg-fetch'
 
 class Productive {
   constructor (apiKey, orgId) {
