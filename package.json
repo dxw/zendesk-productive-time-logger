@@ -47,7 +47,7 @@
     "core-js": "^3.17.3",
     "css-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
-    "jest": "^27.1.1",
+    "jest": "^27.2.4",
     "mini-css-extract-plugin": "^2.2.2",
     "postcss-import": "^14.0.2",
     "postcss-loader": "^6.1.1",
