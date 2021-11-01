@@ -46,7 +46,7 @@
     "copy-webpack-plugin": "^9.0.1",
     "core-js": "^3.19.0",
     "css-loader": "^6.5.0",
-    "html-webpack-plugin": "^5.3.2",
+    "html-webpack-plugin": "^5.5.0",
     "jest": "^27.3.1",
     "mini-css-extract-plugin": "^2.4.3",
     "postcss-import": "^14.0.2",
