@@ -39,7 +39,7 @@
     "@zendeskgarden/css-tooltips": "^4.1.27",
     "@zendeskgarden/css-utilities": "^4.5.5",
     "babel-jest": "^27.3.1",
-    "babel-loader": "^8.2.2",
+    "babel-loader": "^8.2.3",
     "babel-polyfill": "^6.26.0",
     "braces": "^3.0.2",
     "clean-webpack-plugin": "^4.0.0",
