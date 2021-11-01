@@ -65,7 +65,13 @@ class Productive {
       'filter[deal_id]': dealIds.join(','),
       'filter[project_id]': projectId
     })
-      .then(responseData => responseData.data.find(service => service.relationships.service_type.data.id === this._supportServiceTypeId))
+      .then(responseData => {
+        const supportService = responseData.data.find(service => service.relationships.service_type.data.id === this._supportServiceTypeId)
+        if (!supportService) {
+          throw new Error()
+        }
+        return supportService
+      })
       .catch(e => this._handleError(`No support service for project with ID '${projectId}' found on Productive`, e))
   }
 
