@@ -1,20 +1,20 @@
 GIT
   remote: https://github.com/dxw/zendesk_apps_tools.git
-  revision: bf9cb2e21caf72b4848c2fd0480d15a3d02e2c6b
-  tag: v3.8.5
+  revision: 05eb50b8ca248a169a6e6e96b5932dcb6b233e33
+  ref: 05eb50b
   specs:
     zendesk_apps_tools (3.8.5)
       execjs (~> 2.7.0)
       faraday (~> 0.9.2)
-      faye-websocket (~> 0.10.7)
+      faye-websocket (~> 0.11.0)
       listen (~> 2.10)
       rack-livereload
-      rubyzip (~> 1.2.1)
-      sinatra (~> 1.4.6)
+      rubyzip (~> 1.3.0)
+      sinatra (~> 2.1.0)
       sinatra-cross_origin (~> 0.3.1)
       thin (~> 1.8.0)
       thor (~> 0.19.4)
-      zendesk_apps_support (~> 4.29.9)
+      zendesk_apps_support (>= 4.29.10)
 
 GEM
   remote: https://rubygems.org/
@@ -29,12 +29,12 @@ GEM
     execjs (2.7.0)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
-    faye-websocket (0.10.9)
+    faye-websocket (0.11.1)
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.5.1)
     ffi (1.15.4)
     hitimes (2.0.0)
-    i18n (1.8.10)
+    i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     image_size (2.0.2)
     ipaddress_2 (0.13.0)
@@ -49,21 +49,24 @@ GEM
     marcel (1.0.2)
     mini_portile2 (2.6.1)
     multipart-post (2.1.1)
+    mustermann (1.1.1)
+      ruby2_keywords (~> 0.0.1)
     nokogiri (1.12.5)
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     nokogiri (1.12.5-x86_64-darwin)
       racc (~> 1.4)
     racc (1.6.0)
-    rack (1.6.13)
+    rack (2.2.3)
     rack-livereload (0.3.17)
       rack
-    rack-protection (1.5.5)
+    rack-protection (2.1.0)
       rack
     rb-fsevent (0.11.0)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    rubyzip (1.2.4)
+    ruby2_keywords (0.0.5)
+    rubyzip (1.3.0)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -71,10 +74,11 @@ GEM
       rb-inotify (~> 0.9, >= 0.9.7)
     sassc (2.4.0)
       ffi (~> 1.9)
-    sinatra (1.4.8)
-      rack (~> 1.5)
-      rack-protection (~> 1.4)
-      tilt (>= 1.3, < 3)
+    sinatra (2.1.0)
+      mustermann (~> 1.0)
+      rack (~> 2.2)
+      rack-protection (= 2.1.0)
+      tilt (~> 2.0)
     sinatra-cross_origin (0.3.2)
     thin (1.8.1)
       daemons (~> 1.0, >= 1.0.9)
