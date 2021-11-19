@@ -29,7 +29,7 @@ class App {
     const airtableProjectRecord = await this._initializeAirtableProject(this._metadata.settings).catch(this._handleError.bind(this))
     this._productiveClient = await this._initializeProductiveClient(this._metadata.settings.productive_api_key, this._metadata.settings.productive_org_id)
     if (!airtableProjectRecord) return this._handleError('Could not find project in Airtable')
-    if (!airtableProjectRecord.productive_url) return this._handleError('Could not find Productive project URL in Airtable project')
+    if (!airtableProjectRecord.productive_url) return this._handleError('Could not find Productive project URL in Airtable')
     if (!this._productiveClient) return this._handleError('Could not connect to Productive')
 
     const projectId = this._productiveClient.getProjectIdFromUrl(airtableProjectRecord.productive_url)

@@ -81,7 +81,7 @@ describe('Example App', () => {
     })
 
     it('should show an error message on the page', () => {
-      expect(document.querySelector('#message').textContent).toMatch('Could not find Productive project URL in Airtable project')
+      expect(document.querySelector('#message').textContent).toMatch('Could not find Productive project URL in Airtable')
     })
   })
 
