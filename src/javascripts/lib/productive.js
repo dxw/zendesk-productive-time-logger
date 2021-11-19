@@ -66,7 +66,7 @@ class Productive {
       'filter[project_id]': projectId
     })
       .then(responseData => {
-        const supportService = responseData.data.find(service => service.relationships.service_type.data.id === this._supportServiceTypeId)
+        const supportService = responseData.data.find(service => service.relationships.service_type.data?.id === this._supportServiceTypeId)
         if (!supportService) {
           throw new Error()
         }
