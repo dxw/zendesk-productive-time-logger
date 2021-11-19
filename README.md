@@ -52,6 +52,8 @@ https://dxw.zendesk.com/agent/tickets/123345?zat=true
 
 Click on the `Apps` button on the ticket view to see the app in action!
 
+If the sidebar will not load, check the console. If you see a request to https://localhost and an error about SSL, then you may need to make changs in your browser to enable this ([for Chrome see here](https://stackoverflow.com/a/59452249/3356802).
+
 ## Running the tests
 
 Jest is used for testing, and all tests, mocks, and fixtures are in the `spec` folder.
