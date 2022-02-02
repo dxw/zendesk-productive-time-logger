@@ -44,7 +44,7 @@
     "braces": "^3.0.2",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^9.0.1",
-    "core-js": "^3.19.0",
+    "core-js": "^3.21.0",
     "css-loader": "^6.5.0",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.3.1",
