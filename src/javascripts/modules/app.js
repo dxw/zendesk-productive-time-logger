@@ -27,10 +27,13 @@ class App {
     this._ticket = await this._getZendeskField('ticket')
 
     const airtableProjectRecord = await this._initializeAirtableProject(this._metadata.settings).catch(this._handleError.bind(this))
-    this._productiveClient = await this._initializeProductiveClient(this._metadata.settings.productive_api_key, this._metadata.settings.productive_org_id)
     if (!airtableProjectRecord) return this._handleError('Could not find project in Airtable')
     if (!airtableProjectRecord.productive_url) return this._handleError('Could not find Productive project URL in Airtable')
+    console.log('Connected to Airtable successfully')
+
+    this._productiveClient = await this._initializeProductiveClient(this._metadata.settings.productive_api_key, this._metadata.settings.productive_org_id)
     if (!this._productiveClient) return this._handleError('Could not connect to Productive')
+    console.log('Connected to Productive successfully')
 
     const projectId = this._productiveClient.getProjectIdFromUrl(airtableProjectRecord.productive_url)
     if (!projectId) return this._handleError('Could not identify Productive project ID')
@@ -42,11 +45,13 @@ class App {
     ])
       .catch(this._handleError.bind(this))
       .then((result) => result || [])
+    console.log('Retrieved project and budgets from Productive')
 
     if (person && project && deals) {
       this._data.person = person
       this._data.project = project
 
+      console.log('Requesting time entries from Productive')
       this._productiveClient.getTimeEntriesContaining(this._ticket.id)
         .then(ticketTimeEntries => {
           console.log('Retrieved time entries from Productive')
@@ -60,8 +65,10 @@ class App {
 
       return this._productiveClient.getProjectSupportService(projectId, deals.map(deal => deal.id))
         .then(service => {
+          console.log('Retrieved support service from Productive')
           this._data.service = service
           this._data.budget = deals.find(budget => budget.id === service.relationships.deal.data.id)
+          console.log('Identified support budget')
 
           const productiveBaseUrl = 'https://app.productive.io/15642-dxw/'
 
@@ -87,6 +94,7 @@ class App {
           }
 
           this.states.okay = true
+          console.log('Rendering...')
           this._renderTemplate()
           document.getElementById('note').value = this._ticket.subject
           document.getElementById('submit').addEventListener('click', e => { e.preventDefault(); this._logTime() })
