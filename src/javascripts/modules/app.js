@@ -47,7 +47,16 @@ class App {
       this._data.person = person
       this._data.project = project
 
-      const ticketTimeEntries = await this._productiveClient.getTimeEntriesContaining(this._ticket.id)
+      this._productiveClient.getTimeEntriesContaining(this._ticket.id)
+        .then(ticketTimeEntries => {
+          console.log('Retrieved time entries from Productive')
+          this.states.ticket = {
+            hours: this._convertToHours(ticketTimeEntries.reduce((total, entry) => total + entry.attributes.time, 0))
+          }
+          console.log('Rendering...')
+          this._renderTemplate()
+        })
+        .catch(this._handleError.bind(this))
 
       return this._productiveClient.getProjectSupportService(projectId, deals.map(deal => deal.id))
         .then(service => {
@@ -70,8 +79,6 @@ class App {
             name: this._data.project.attributes.name,
             url: productiveBaseUrl + 'projects/' + this._data.project.id + '/time-entries'
           }
-
-          this.states.ticket = { hours: this._convertToHours(ticketTimeEntries.reduce((total, entry) => total + entry.attributes.time, 0)) }
 
           this.states.okay = true
           this._renderTemplate()
