@@ -80,6 +80,12 @@ class App {
             url: productiveBaseUrl + 'projects/' + this._data.project.id + '/time-entries'
           }
 
+          if (!this.states?.ticket?.hours) {
+            this.states.ticket = {
+              hours: '[calculating...]'
+            }
+          }
+
           this.states.okay = true
           this._renderTemplate()
           document.getElementById('note').value = this._ticket.subject
