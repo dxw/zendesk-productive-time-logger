@@ -14,7 +14,7 @@ class App {
     this._data = {}
 
     // this.initializePromise is only used in testing
-    // indicate app initilization(including all async operations) is complete
+    // indicate app initilization (including all async operations) is complete
     this.initializePromise = this.init()
   }
 
