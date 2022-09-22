@@ -62,7 +62,7 @@
     "whatwg-fetch": "^3.6.2"
   },
   "dependencies": {
-    "airtable": "^0.11.4",
+    "airtable": "0.11.5",
     "handlebars": "^4.7.7"
   },
   "standard": {
