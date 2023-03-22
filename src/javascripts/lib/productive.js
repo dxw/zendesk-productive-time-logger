@@ -17,13 +17,13 @@ class Productive {
     const urlParams = new URLSearchParams(params)
 
     return fetch(this._rootUrl + endpoint + '?' + urlParams.toString(), {
-      method: method,
+      method,
       headers: {
         'Content-Type': 'application/vnd.api+json',
         'X-Auth-Token': this._apiKey,
         'X-Organization-Id': this._orgId
       },
-      body: body
+      body
     })
       .then(response => response.json())
       .then(responseData => {
@@ -90,7 +90,7 @@ class Productive {
       data: {
         type: 'time_entries',
         attributes: {
-          note: note,
+          note,
           date: this._getIsoDateString(),
           time: duration.toString()
         },

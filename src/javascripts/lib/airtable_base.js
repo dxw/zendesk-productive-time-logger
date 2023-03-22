@@ -2,7 +2,7 @@ import Airtable from 'airtable'
 
 class AirtableBase {
   constructor (apiKey, baseID) {
-    this._base = new Airtable({ apiKey: apiKey }).base(baseID)
+    this._base = new Airtable({ apiKey }).base(baseID)
   }
 
   async findProjectBySlug (slug) {
