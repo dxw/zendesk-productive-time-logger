@@ -140,12 +140,11 @@ describe('Example App', () => {
       initializeApp(airtableBase(), productiveClient('time logging fails')).then(_ => done())
     })
 
-    it('should show an error message on the page', () => {
+    it('should show an error message on the page', async () => {
       document.querySelector('#duration').value = 10
       document.querySelector('#submit').click()
-      setTimeout(() => {
-        expect(document.querySelector('#message').textContent).toMatch('Could not create time entry on Productive')
-      }, 100)
+      await new Promise((resolve) => setTimeout(resolve, 50))
+      expect(document.querySelector('#message').textContent).toMatch('Could not create time entry on Productive')
     })
   })
 
@@ -154,12 +153,11 @@ describe('Example App', () => {
       initializeApp(airtableBase(), productiveClient()).then(_ => done())
     })
 
-    it('should show a success message on the page', () => {
+    it('should show a success message on the page', async () => {
       document.querySelector('#duration').value = 10
       document.querySelector('#submit').click()
-      setTimeout(() => {
-        expect(document.querySelector('#message').textContent).toMatch('Time logged successfully')
-      }, 100)
+      await new Promise((resolve) => setTimeout(resolve, 50))
+      expect(document.querySelector('#message').textContent).toMatch('Time logged successfully')
     })
   })
 })
