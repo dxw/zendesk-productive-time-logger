@@ -50,7 +50,6 @@ describe('Example App', () => {
 
       expect(productiveTimeLogger.querySelector('#project-name').textContent).toBe('My project')
       expect(productiveTimeLogger.querySelector('#budget-name').textContent).toBe('Support')
-      expect(productiveTimeLogger.querySelector('#service-name').textContent).toBe('Support')
       expect(productiveTimeLogger.querySelector('#person-email').textContent).toBe('hello@example.com')
     })
   })
@@ -115,13 +114,15 @@ describe('Example App', () => {
     })
   })
 
-  describe('when project has no support service in productive', () => {
+  describe('when project has no support services in productive', () => {
     beforeEach(done => {
-      initializeApp(airtableBase(), productiveClient('no support service')).then(_ => done())
+      initializeApp(airtableBase(), productiveClient('no support services')).then(_ => done())
     })
 
     it('should show an error message on the page', () => {
-      expect(document.querySelector('#message').textContent).toMatch("No support service for project with ID '1234' found on Productive")
+      expect(document.querySelector('#message').textContent).toMatch("No support services for project with ID '1234' found on Productive")
+    })
+  })
     })
   })
 

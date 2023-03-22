@@ -60,19 +60,19 @@ class Productive {
       .catch(e => this._handleError(`No budgets for project with ID '${projectId}' found on Productive`, e))
   }
 
-  async getProjectSupportService (projectId, dealIds) {
+  async getProjectSupportServices (projectId, dealIds) {
     return this._makeRequest('services', 'GET', {
       'filter[deal_id]': dealIds.join(','),
       'filter[project_id]': projectId
     })
       .then(responseData => {
-        const supportService = responseData.data.find(service => service.relationships.service_type.data?.id === this._supportServiceTypeId)
-        if (!supportService) {
+        const supportServices = responseData.data.filter(service => service.relationships.service_type.data?.id === this._supportServiceTypeId)
+        if (!supportServices) {
           throw new Error()
         }
-        return supportService
+        return supportServices
       })
-      .catch(e => this._handleError(`No support service for project with ID '${projectId}' found on Productive`, e))
+      .catch(e => this._handleError(`No support services for project with ID '${projectId}' found on Productive`, e))
   }
 
   async getTimeEntriesContaining (text) {

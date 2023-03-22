@@ -63,20 +63,22 @@ class App {
         })
         .catch(this._handleError.bind(this))
 
-      return this._productiveClient.getProjectSupportService(projectId, deals.map(deal => deal.id))
-        .then(service => {
-          console.log('Retrieved support service from Productive')
-          this._data.service = service
-          this._data.budget = deals.find(budget => budget.id === service.relationships.deal.data.id)
+      return this._productiveClient.getProjectSupportServices(projectId, deals.map(deal => deal.id))
+        .then(services => {
+          console.log('Retrieved support services from Productive')
+          this._data.services = services
+          this._data.budget = deals.find(budget => budget.id === services[0].relationships.deal.data.id)
           console.log('Identified support budget')
 
           const productiveBaseUrl = 'https://app.productive.io/15642-dxw/'
 
           this.states.person = { email: this._data.person.attributes.email }
-          this.states.service = {
-            name: this._data.service.attributes.name,
-            hours: this._convertToHours(this._data.service.attributes.worked_time)
-          }
+          this.states.services = this._data.services.map((service) => ({
+            id: service.id,
+            name: service.attributes.name,
+            hours: this._convertToHours(service.attributes.worked_time)
+          }))
+          this.states.totalHours = this.states.services.reduce((partialSum, s) => partialSum + s.hours, 0)
           this.states.budget = {
             name: this._data.budget.attributes.name,
             url: productiveBaseUrl + 'projects/budgets/d/deal/' + this._data.budget.id + '/time-entries',
