@@ -22,16 +22,22 @@ export default function (args) {
       <p>Person: <b id="person-email">{{person.email}}</b></p>
       <p>Project: <b id="project-name">{{link project.name project.url}}</b></p>
       <p>Budget: <b id="budget-name">{{link budget.name budget.url}}</b></p>
-      <p>Service: <b id="service-name">{{service.name}}</b></p>
 
       <hr>
 
       <p>{{plural ticket.hours 'hour'}} spent on this ticket to date</p>
-      <p>{{plural service.hours 'hour'}} of support time spent on this client since {{budget.start_date}}</p>
+      <p>{{plural totalHours 'hour'}} of support time spent on this client since {{budget.start_date}}</p>
 
       <hr>
 
       <form>
+        <label for="service">Service</label>
+        <select name="service" id="service">
+          {{#each services}}
+          <option value="{{this.id}}">{{this.name}}</option>
+          {{/each}}
+        </select>
+        
         <label for="duration">Time spent</label>
         <input name="duration" id="duration" type="text" pattern="[0-9:]+" title="Duration in hours and minutes" placeholder="eg. 1:30">
 

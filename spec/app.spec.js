@@ -50,7 +50,6 @@ describe('Example App', () => {
 
       expect(productiveTimeLogger.querySelector('#project-name').textContent).toBe('My project')
       expect(productiveTimeLogger.querySelector('#budget-name').textContent).toBe('Support')
-      expect(productiveTimeLogger.querySelector('#service-name').textContent).toBe('Support')
       expect(productiveTimeLogger.querySelector('#person-email').textContent).toBe('hello@example.com')
     })
   })
@@ -115,13 +114,24 @@ describe('Example App', () => {
     })
   })
 
-  describe('when project has no support service in productive', () => {
+  describe('when project has no support services in productive', () => {
     beforeEach(done => {
-      initializeApp(airtableBase(), productiveClient('no support service')).then(_ => done())
+      initializeApp(airtableBase(), productiveClient('no support services')).then(_ => done())
     })
 
     it('should show an error message on the page', () => {
-      expect(document.querySelector('#message').textContent).toMatch("No support service for project with ID '1234' found on Productive")
+      expect(document.querySelector('#message').textContent).toMatch("No support services for project with ID '1234' found on Productive")
+    })
+  })
+
+  describe('when form is submitted without required data', () => {
+    beforeEach(done => {
+      initializeApp(airtableBase(), productiveClient()).then(_ => done())
+    })
+
+    it('should show an error message on the page', () => {
+      document.querySelector('#submit').click()
+      expect(document.querySelector('#message').textContent).toMatch("Couldn't submit form, missing required information")
     })
   })
 
@@ -130,12 +140,11 @@ describe('Example App', () => {
       initializeApp(airtableBase(), productiveClient('time logging fails')).then(_ => done())
     })
 
-    it('should show an error message on the page', () => {
+    it('should show an error message on the page', async () => {
       document.querySelector('#duration').value = 10
       document.querySelector('#submit').click()
-      setTimeout(() => {
-        expect(document.querySelector('#message').textContent).toMatch('Could not create time entry on Productive')
-      }, 100)
+      await new Promise((resolve) => setTimeout(resolve, 50))
+      expect(document.querySelector('#message').textContent).toMatch('Could not create time entry on Productive')
     })
   })
 
@@ -144,12 +153,11 @@ describe('Example App', () => {
       initializeApp(airtableBase(), productiveClient()).then(_ => done())
     })
 
-    it('should show a success message on the page', () => {
+    it('should show a success message on the page', async () => {
       document.querySelector('#duration').value = 10
       document.querySelector('#submit').click()
-      setTimeout(() => {
-        expect(document.querySelector('#message').textContent).toMatch('Time logged successfully')
-      }, 100)
+      await new Promise((resolve) => setTimeout(resolve, 50))
+      expect(document.querySelector('#message').textContent).toMatch('Time logged successfully')
     })
   })
 })

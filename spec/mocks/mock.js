@@ -78,8 +78,8 @@ export const productiveClient = function (setting) {
     async getActiveBudgets (projectId) {
       return stubJSON('productive-budgets')
     },
-    async getProjectSupportService (projectId, dealIds) {
-      return stubJSON('productive-service')
+    async getProjectSupportServices (projectId, dealIds) {
+      return stubJSON('productive-services')
     },
     async getTimeEntriesContaining (text) {
       return stubJSON('productive-time-entries')
@@ -99,8 +99,8 @@ export const productiveClient = function (setting) {
     case 'no person':
       client.getPersonByEmail = async (email) => { throw new Error(`Person with email '${email}' not found on Productive`) }
       break
-    case 'no support service':
-      client.getProjectSupportService = async (projectId, dealIds) => { throw new Error(`No support service for project with ID '${projectId}' found on Productive`) }
+    case 'no support services':
+      client.getProjectSupportServices = async (projectId, dealIds) => { throw new Error(`No support services for project with ID '${projectId}' found on Productive`) }
       break
     case 'time logging fails':
       client.createTimeEntry = async () => { throw new Error('Could not create time entry on Productive') }

@@ -8,4 +8,4 @@ script/update
 
 echo "==> Running tests…"
 
-npm run lint && npm test
+npm run lint && npm test --production

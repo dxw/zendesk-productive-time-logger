@@ -63,20 +63,22 @@ class App {
         })
         .catch(this._handleError.bind(this))
 
-      return this._productiveClient.getProjectSupportService(projectId, deals.map(deal => deal.id))
-        .then(service => {
-          console.log('Retrieved support service from Productive')
-          this._data.service = service
-          this._data.budget = deals.find(budget => budget.id === service.relationships.deal.data.id)
+      return this._productiveClient.getProjectSupportServices(projectId, deals.map(deal => deal.id))
+        .then(services => {
+          console.log('Retrieved support services from Productive')
+          this._data.services = services
+          this._data.budget = deals.find(budget => budget.id === services[0].relationships.deal.data.id)
           console.log('Identified support budget')
 
           const productiveBaseUrl = 'https://app.productive.io/15642-dxw/'
 
           this.states.person = { email: this._data.person.attributes.email }
-          this.states.service = {
-            name: this._data.service.attributes.name,
-            hours: this._convertToHours(this._data.service.attributes.worked_time)
-          }
+          this.states.services = this._data.services.map((service) => ({
+            id: service.id,
+            name: service.attributes.name,
+            hours: this._convertToHours(service.attributes.worked_time)
+          }))
+          this.states.totalHours = this.states.services.reduce((partialSum, s) => partialSum + s.hours, 0)
           this.states.budget = {
             name: this._data.budget.attributes.name,
             url: productiveBaseUrl + 'projects/budgets/d/deal/' + this._data.budget.id + '/time-entries',
@@ -97,18 +99,28 @@ class App {
           console.log('Rendering...')
           this._renderTemplate()
           document.getElementById('note').value = this._ticket.subject
-          document.getElementById('submit').addEventListener('click', e => { e.preventDefault(); this._logTime() })
+          document.getElementById('submit').addEventListener('click', async e => {
+            e.preventDefault()
+            const duration = this._calculateDuration(document.getElementById('duration').value)
+            const note = document.getElementById('note').value + ` (<a href="https://dxw.zendesk.com/agent/tickets/${this._ticket.id}">#${this._ticket.id}</a>)`
+            const serviceId = document.getElementById('service').value
+            if (!duration) {
+              return this._handleError("Couldn't submit form, missing required information")
+            }
+            this._logTime(duration, serviceId, note)
+          })
         })
         .catch(this._handleError.bind(this))
     }
   }
 
-  async _logTime () {
-    const duration = this._calculateDuration(document.getElementById('duration').value)
-    const note = document.getElementById('note').value + ` (<a href="https://dxw.zendesk.com/agent/tickets/${this._ticket.id}">#${this._ticket.id}</a>)`
-    return this._productiveClient.createTimeEntry(duration, this._data.service.id, this._data.person.id, note)
-      .then(this._handleSuccess('Time logged successfully'))
-      .catch(this._handleError.bind(this))
+  async _logTime (duration, serviceId, note) {
+    try {
+      await this._productiveClient.createTimeEntry(duration, serviceId, this._data.person.id, note)
+      this._handleSuccess('Time logged successfully')
+    } catch (e) {
+      this._handleError(e.message)
+    }
   }
 
   _convertToHours (minutes, dp = 1) {
