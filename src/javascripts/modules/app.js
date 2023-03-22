@@ -77,7 +77,8 @@ class App {
             id: service.id,
             name: service.attributes.name,
             hours: this._convertToHours(service.attributes.worked_time)
-          }))
+          })).sort((a, b) => a.name.toLowerCase().includes('support') ? -1 : b.name.toLowerCase().includes('support') ? 1 : a > b ? 1 : -1)
+
           this.states.totalHours = this.states.services.reduce((partialSum, s) => partialSum + s.hours, 0)
           this.states.budget = {
             name: this._data.budget.attributes.name,
