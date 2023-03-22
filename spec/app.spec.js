@@ -123,6 +123,15 @@ describe('Example App', () => {
       expect(document.querySelector('#message').textContent).toMatch("No support services for project with ID '1234' found on Productive")
     })
   })
+
+  describe('when form is submitted without required data', () => {
+    beforeEach(done => {
+      initializeApp(airtableBase(), productiveClient()).then(_ => done())
+    })
+
+    it('should show an error message on the page', () => {
+      document.querySelector('#submit').click()
+      expect(document.querySelector('#message').textContent).toMatch("Couldn't submit form, missing required information")
     })
   })
 

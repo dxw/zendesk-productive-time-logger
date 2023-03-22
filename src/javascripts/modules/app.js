@@ -99,18 +99,28 @@ class App {
           console.log('Rendering...')
           this._renderTemplate()
           document.getElementById('note').value = this._ticket.subject
-          document.getElementById('submit').addEventListener('click', e => { e.preventDefault(); this._logTime() })
+          document.getElementById('submit').addEventListener('click', async e => {
+            e.preventDefault()
+            const duration = this._calculateDuration(document.getElementById('duration').value)
+            const note = document.getElementById('note').value + ` (<a href="https://dxw.zendesk.com/agent/tickets/${this._ticket.id}">#${this._ticket.id}</a>)`
+            const serviceId = document.getElementById('service').value
+            if (!duration) {
+              return this._handleError("Couldn't submit form, missing required information")
+            }
+            this._logTime(duration, serviceId, note)
+          })
         })
         .catch(this._handleError.bind(this))
     }
   }
 
-  async _logTime () {
-    const duration = this._calculateDuration(document.getElementById('duration').value)
-    const note = document.getElementById('note').value + ` (<a href="https://dxw.zendesk.com/agent/tickets/${this._ticket.id}">#${this._ticket.id}</a>)`
-    return this._productiveClient.createTimeEntry(duration, this._data.service.id, this._data.person.id, note)
-      .then(this._handleSuccess('Time logged successfully'))
-      .catch(this._handleError.bind(this))
+  async _logTime (duration, serviceId, note) {
+    try {
+      await this._productiveClient.createTimeEntry(duration, serviceId, this._data.person.id, note)
+      this._handleSuccess('Time logged successfully')
+    } catch (e) {
+      this._handleError(e.message)
+    }
   }
 
   _convertToHours (minutes, dp = 1) {
