@@ -56,7 +56,7 @@
     "precss": "^4.0.0",
     "process": "0.11.10",
     "regenerator-runtime": "^0.13.9",
-    "standard": "^17.0.0",
+    "standard": "^17.1.0",
     "webpack": "^5.74",
     "webpack-cli": "^5.0.0",
     "whatwg-fetch": "^3.6.2"
