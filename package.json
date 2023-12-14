@@ -59,7 +59,7 @@
     "standard": "^17.0.0",
     "webpack": "^5.74",
     "webpack-cli": "^5.0.0",
-    "whatwg-fetch": "^3.6.2"
+    "whatwg-fetch": "^3.6.20"
   },
   "dependencies": {
     "airtable": "^0.12.0",
