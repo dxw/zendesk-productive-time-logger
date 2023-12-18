@@ -55,7 +55,7 @@
     "postcss-preset-env": "^9.3.0",
     "precss": "^4.0.0",
     "process": "0.11.10",
-    "regenerator-runtime": "^0.14.0",
+    "regenerator-runtime": "^0.14.1",
     "standard": "^17.0.0",
     "webpack": "^5.74",
     "webpack-cli": "^5.0.0",
