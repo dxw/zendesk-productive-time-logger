@@ -20,7 +20,7 @@
     "lint:fix": "standard --fix"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.3",
+    "@babel/core": "^7.24.4",
     "@babel/plugin-transform-runtime": "^7.24.3",
     "@babel/preset-env": "^7.24.4",
     "@zendeskgarden/css-arrows": "^3.1.4",
