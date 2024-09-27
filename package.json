@@ -57,7 +57,7 @@
     "process": "0.11.10",
     "regenerator-runtime": "^0.14.1",
     "standard": "^17.1.2",
-    "webpack": "^5.91",
+    "webpack": "^5.95",
     "webpack-cli": "^5.0.0",
     "whatwg-fetch": "^3.6.2"
   },
